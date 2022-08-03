@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+<div>
+    <p>User Information-Page</p>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Last Name</td>
+            <td>Salary</td>
+            <td>Role</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${user}">
+            <td th:text="*{getId()}"></td>
+            <td th:text="*{getName()}"></td>
+            <td th:text="*{getLastName()}"></td>
+            <td th:text="*{getSalary()}"></td>
+            <td th:text="*{roles()}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<div>
+    <p>Admin Panel</p>
+    <table>
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Last Name</td>
+            <td>Salary</td>
+            <td>Role</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"/>
+            <td th:text="${user.getName()}"/>
+            <td th:text="${user.getLastName()}"/>
+            <td th:text="${user.getSalary()}"/>
+            <td th:text="${user.roles()}"/>
+            <td>
+                <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="edit"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/admin/{id}/delete(id=${user.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<form th:action="@{/admin/create}" th:method="GET">
+    <input type="submit" value="Create"/>
+</form>
+<br>
+<form th:action="@{/user}" th:method="GET">
+    <input type="submit" value="info user"/>
+</form>
+<br>
+<form action="#" th:action="@{/logout}" th:method="Get">
+    <input type="submit" value="exit"/>
+</form>
+</div>
+</body>
+</html>

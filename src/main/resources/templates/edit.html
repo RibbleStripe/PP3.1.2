@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/admin/{id}/update(id=${user.getId()})}" th:object="${user}">
+    <table>
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Lastname</td>
+            <td>Salary</td>
+            <td>Password</td>
+            <td>Role</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="*{getId()}"/>
+            <td>
+                <input type="text" th:field="*{name}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{lastName}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{salary}"/>
+            </td>
+            <td>
+                <input type="text" name="password"/>
+            </td>
+            <td>
+                <select name="namerole">
+                    <option th:each="role: ${roles}" th:value="${role.name}" th:text="${role.name}">
+                </select>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="update User"/>
+</form>
+<br>
+<form th:action="@{/admin}" method="get">
+    <input type="submit" value="Back"/>
+</form>
+<br>
+
+<form th:action="@{/logout}" method="get">
+    <input type="submit" value="exit"/>
+</form>
+
+
+</body>
+</html>
