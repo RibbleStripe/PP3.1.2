@@ -3,50 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CREATE</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/admin/create}" th:object="${user}">
-    <table>
-        <thead>
-        <tr>
-            <td>username</td>
-            <td>Name</td>
-            <td>Lastname</td>
-            <td>Salary</td>
-            <td>Password</td>
-            <td>Role</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <input type = "text" name="username"/>
-            </td>
-            <td>
-                <input type = "text" th:field="*{name}"/>
-            </td>
-            <td>
-                <input type = "text" th:field="*{lastName}"/>
-            </td>
-            <td>
-                <input type = "text" th:field="*{salary}"/>
-            </td>
-            <td>
-                <input type = "text" th:field="*{password}"/>
-            </td>
-            <td>
-                <select name = "namerole">
+<div th:align="center">
+    <h2>Create User</h2>
+    <form th:method="POST" th:action="@{/admin/create}" th:object="${user}">
+        <table th:border="2" th:cellpadding="15">
+            <tr>
+                <td>username</td>
+                <td><input type="text" name="username"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Firstname</td>
+                <td><input type="text" th:field="*{name}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Lastname</td>
+                <td><input type="text" th:field="*{lastName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Salary</td>
+                <td><input type="text" th:field="*{salary}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" th:field="*{password}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td><select name="namerole">
                     <option th:each="role: ${roles}" th:value="${role.name}" th:text="${role.name}">
                 </select>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-
-    <input type = "submit" value = "Create"/>
-</form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="Create"/>
+    </form>
 
     <br>
 
@@ -60,7 +59,7 @@
         <input type="submit" value="exit"/>
     </form>
 
-    <input type = "submit" value = "update User"/>
-</form>
+    </form>
+</div>
 </body>
 </html>

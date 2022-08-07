@@ -16,7 +16,6 @@ public class RoleDaoImpl implements RoleDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     public Set<Role> getAllRoles() {
         String JPAql = "SELECT role FROM Role role";
@@ -26,7 +25,8 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public Set<Role> getByName(String name) {
         String JPAql = "SELECT role FROM Role role WHERE role.name = :name";
-        return entityManager.createQuery(JPAql, Role.class).setParameter("name", name).getResultStream().collect(Collectors.toSet());
+        return entityManager.createQuery(JPAql, Role.class).setParameter("name", name)
+                .getResultStream().collect(Collectors.toSet());
     }
 
     @Override

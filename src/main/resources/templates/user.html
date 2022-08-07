@@ -10,22 +10,22 @@
     <table border="1">
         <p>User Information-Page</p>
         <thead>
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Last Name</td>
-                <td>Salary</td>
-                <td>Role</td>
-            </tr>
+        <tr>
+            <td>ID</td>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Salary</td>
+            <td>Role</td>
+        </tr>
         </thead>
         <tbody>
-            <tr  th:object="${user}">
-                <td th:text="*{getId()}"/>
-                <td th:text="*{getName()}"/>
-                <td th:text="*{getLastName()}"/>
-                <td th:text="*{getSalary()}"/>
-                <td th:text="*{roles()}"/>
-            </tr>
+        <tr th:object="${user}">
+            <td th:text="*{getId()}"/>
+            <td th:text="*{getName()}"/>
+            <td th:text="*{getLastName()}"/>
+            <td th:text="*{getSalary()}"/>
+            <td th:text="*{roles()}"/>
+        </tr>
         </tbody>
 
     </table>

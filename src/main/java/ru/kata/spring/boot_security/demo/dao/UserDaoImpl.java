@@ -13,7 +13,6 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     public List<User> getAllUsers() {
         String JPAql = "SELECT user FROM User user";
@@ -27,7 +26,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Long id) {
-
         return entityManager.find(User.class, id);
     }
 

@@ -11,10 +11,11 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class DefaultUser {
-    
+
     private final UserService userService;
 
     private final RoleService roleService;
+
     @Autowired
     public DefaultUser(UserService userService, RoleService roleService) {
         this.userService = userService;
@@ -27,8 +28,6 @@ public class DefaultUser {
         Role roleUser = new Role("ROLE_USER");
         roleService.saveRole(roleAdmin);
         roleService.saveRole(roleUser);
-
-
         User admin = new User();
         admin.setName("Admin");
         admin.setLastName("Adminov");
@@ -37,8 +36,5 @@ public class DefaultUser {
         admin.setPassword("admin");
         admin.addRole(roleAdmin);
         userService.add(admin);
-
     }
-
-
 }

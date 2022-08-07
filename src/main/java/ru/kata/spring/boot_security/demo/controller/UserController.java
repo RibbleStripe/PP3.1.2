@@ -14,16 +14,15 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 public class UserController {
 
     private final UserService userService;
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-
     @GetMapping()
     public String userPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-                model.addAttribute("user", userService.getUserByName(userDetails.getUsername()));
-
+        model.addAttribute("user", userService.getUserByName(userDetails.getUsername()));
         return "user";
     }
 

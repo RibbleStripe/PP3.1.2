@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService {
 
         return userDao.findByUsername(username);
     }
+
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -72,6 +73,4 @@ public class UserServiceImpl implements UserService {
         user.getAuthorities().size();
         return user;
     }
-
-
 }

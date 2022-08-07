@@ -3,8 +3,6 @@ package ru.kata.spring.boot_security.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,11 +10,10 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DynamicInsert
-@DynamicUpdate
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -44,7 +41,6 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id")
-
     )
     @Column(name = "roles")
     private Set<Role> roles = new HashSet<>();
@@ -54,11 +50,10 @@ public class User implements UserDetails {
     }
 
     public String roles() {
-        String[] res = new String[] { "" };
+        String[] res = new String[]{""};
         getRoles().forEach(role -> res[0] += role.getName() + ", ");
         return res[0];
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -85,5 +80,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

@@ -10,13 +10,12 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
     private final UserService userService;
     private final RoleService roleService;
+
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
@@ -42,8 +41,7 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}/update")
-    public String updateUser(@PathVariable(value = "id", required = false) Long id,
-                             @ModelAttribute("user") User user,
+    public String updateUser(@PathVariable(value = "id", required = false) Long id, @ModelAttribute("user") User user,
                              @RequestParam(value = "namerole", required = false) String namerole,
                              @RequestParam(value = "password", required = false) String password) {
         user.setRoles(roleService.getByName(namerole));
@@ -67,15 +65,11 @@ public class AdminController {
 
     @PostMapping("/create")
     public String createUser(@ModelAttribute("user") User user,
-                             @RequestParam(value = "name", required = false) String namerole,
+                             @RequestParam(value = "namerole", required = false) String namerole,
                              @RequestParam(value = "username") String username) {
         user.setUsername(username);
         user.setRoles(roleService.getByName(namerole));
         userService.add(user);
         return "redirect:/admin";
     }
-
-
-
-
 }

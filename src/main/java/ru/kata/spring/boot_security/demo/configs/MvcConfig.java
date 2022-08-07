@@ -13,7 +13,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public SpringSecurityDialect springSecurityDialect() {
         return new SpringSecurityDialect();
     }
-    
+
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/admin").setViewName("admin");
         registry.addViewController("/user").setViewName("user");

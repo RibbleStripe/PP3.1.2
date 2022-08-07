@@ -10,15 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     private final SuccessUserHandler successUserHandler;
 
     private final UserDetailsService userDetailsService;
+
     @Autowired
     public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailsService userDetailsService) {
         this.successUserHandler = successUserHandler;
@@ -28,19 +26,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
-        .antMatchers("/admin**").hasRole("ADMIN")
-        .antMatchers("/user**").hasAnyRole("ADMIN","USER")
-        .antMatchers("/").anonymous()
-        .antMatchers("/login").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .formLogin().successHandler(successUserHandler)
-        .permitAll()
-        .and()
-        .logout()
-        .permitAll();
-
+                .authorizeRequests()
+                .antMatchers("/admin**").hasRole("ADMIN")
+                .antMatchers("/user**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().successHandler(successUserHandler)
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Override
@@ -52,6 +48,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-
-
 }

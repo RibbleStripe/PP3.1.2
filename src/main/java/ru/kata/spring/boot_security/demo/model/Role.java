@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,9 +24,7 @@ public class Role implements GrantedAuthority {
 
     @Transient
     @ManyToMany(mappedBy = "roles")
-    @JoinTable(name = "users_roles",
-
-            joinColumns = @JoinColumn(name = "role_id"),
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "users_id")
     )
     private Set<User> users;
@@ -34,11 +33,8 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-
     @Override
     public String getAuthority() {
         return getName();
     }
-
-
 }
