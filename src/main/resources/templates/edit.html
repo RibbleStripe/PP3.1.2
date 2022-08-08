@@ -37,9 +37,10 @@
             </tr>
             <tr>
                 <td>Role</td>
-                <td><select name="namerole">
-                    <option th:each="role: ${roles}" th:value="${role.name}" th:text="${role.name}">
-                </select>
+                <td><input type="checkbox" name="namerole"
+                           th:each="role: ${roles}"
+                           th:value="${role.name}"
+                           th:text="${role.name}">
                 </td>
             </tr>
         </table>
