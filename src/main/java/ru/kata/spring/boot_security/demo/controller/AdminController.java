@@ -43,16 +43,7 @@ public class AdminController {
     @PatchMapping("/{id}/update")
     public String updateUser(@PathVariable(value = "id", required = false) Long id, @ModelAttribute("user") User user,
                              @RequestParam(value = "nameRole", required = false) String nameRole) {
-        System.out.println(nameRole);
-        System.out.println(nameRole);
-        System.out.println(nameRole);
-        System.out.println(nameRole);
-        System.out.println(nameRole);
         user.setRoles(roleService.getByName(nameRole));
-        System.out.println(user);
-        System.out.println(user);
-        System.out.println(user);
-        System.out.println(user);
         userService.update(user, id);
         return "redirect:/admin";
     }
@@ -74,17 +65,8 @@ public class AdminController {
     public String createUser(@ModelAttribute("user") User user,
                              @RequestParam(value = "nameRole", required = false) String nameRole,
                              @RequestParam(value = "username", required = false) String username) {
-        System.out.println(nameRole);
-        System.out.println(nameRole);
-        System.out.println(nameRole);
-        System.out.println(nameRole);
-        System.out.println(nameRole);
         user.setUsername(username);
         user.setRoles(roleService.getByName(nameRole));
-        System.out.println(user);
-        System.out.println(user);
-        System.out.println(user);
-        System.out.println(user);
         userService.add(user);
         return "redirect:/admin";
     }
