@@ -42,8 +42,17 @@ public class AdminController {
 
     @PatchMapping("/{id}/update")
     public String updateUser(@PathVariable(value = "id", required = false) Long id, @ModelAttribute("user") User user,
-                             @RequestParam(value = "namerole", required = false) String namerole) {
-        user.setRoles(roleService.getByName(namerole));
+                             @RequestParam(value = "nameRole", required = false) String nameRole) {
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        user.setRoles(roleService.getByName(nameRole));
+        System.out.println(user);
+        System.out.println(user);
+        System.out.println(user);
+        System.out.println(user);
         userService.update(user, id);
         return "redirect:/admin";
     }
@@ -57,16 +66,25 @@ public class AdminController {
     @GetMapping("/create")
     public String createPage(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("roleName", roleService.getAllRoles());
         return "create";
     }
 
     @PostMapping("/create")
     public String createUser(@ModelAttribute("user") User user,
-                             @RequestParam(value = "namerole", required = false) String namerole,
-                             @RequestParam(value = "username") String username) {
+                             @RequestParam(value = "nameRole", required = false) String nameRole,
+                             @RequestParam(value = "username", required = false) String username) {
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        System.out.println(nameRole);
+        System.out.println(nameRole);
         user.setUsername(username);
-        user.setRoles(roleService.getByName(namerole));
+        user.setRoles(roleService.getByName(nameRole));
+        System.out.println(user);
+        System.out.println(user);
+        System.out.println(user);
+        System.out.println(user);
         userService.add(user);
         return "redirect:/admin";
     }

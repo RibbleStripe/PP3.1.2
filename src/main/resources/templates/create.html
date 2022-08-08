@@ -37,10 +37,10 @@
             </tr>
             <tr>
                 <td>Role</td>
-                <td><input type="checkbox" name="namerole"
-                    th:each="role : ${roles}"
+                <td><input type="checkbox" name="nameRole"
+                    th:each="role : ${roleName}"
                     th:text="${role.name}"
-                    th:value="${role.id}">
+                    th:value="${role.name}">
                 </td>
             </tr>
         </table>
