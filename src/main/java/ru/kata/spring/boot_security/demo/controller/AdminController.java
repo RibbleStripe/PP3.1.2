@@ -43,7 +43,9 @@ public class AdminController {
     @PatchMapping("/{id}/update")
     public String updateUser(@PathVariable(value = "id", required = false) Long id, @ModelAttribute("user") User user,
                              @RequestParam(value = "nameRole", required = false) String nameRole) {
-        user.setRoles(roleService.getByName(nameRole));
+        if (nameRole != null) {
+            user.setRoles(roleService.getByName(nameRole));
+        }
         userService.update(user, id);
         return "redirect:/admin";
     }
